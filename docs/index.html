@@ -3,12 +3,23 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>K-Debugger — 모바일 앱 실시간 디버깅 도구</title>
+<title>K-Debugger — 안드로이드 앱 실시간 디버깅 도구</title>
+<meta name="description" content="Android 앱에 붙어 로그·네트워크·상태와 WebView(CDP)를 실시간으로 들여다보는 macOS 데스크톱 디버깅 도구. 설치 후 앱 안에서 자동 업데이트.">
 <link rel="icon" type="image/png" href="icon.png">
+<!-- 공유(링크 미리보기)용 Open Graph / Twitter -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="K-Debugger — 안드로이드 앱 실시간 디버깅 도구">
+<meta property="og:description" content="로그·네트워크·상태·WebView(CDP)를 실시간으로 들여다보는 macOS 디버깅 도구. 자동 업데이트 지원.">
+<meta property="og:url" content="https://rex-ingeni.github.io/K-Debugger/">
+<meta property="og:image" content="https://rex-ingeni.github.io/K-Debugger/icon.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="K-Debugger — 안드로이드 앱 실시간 디버깅 도구">
+<meta name="twitter:description" content="로그·네트워크·상태·WebView(CDP)를 실시간으로. 자동 업데이트 지원.">
+<meta name="twitter:image" content="https://rex-ingeni.github.io/K-Debugger/icon.png">
 <style>
   :root{
     --bg:#14151a; --card:#1e2028; --line:#2a2d38; --fg:#e8eaf0; --muted:#9aa0aa;
-    --accent:#4a86ff; --accent2:#2f9e6b;
+    --accent:#4a86ff;
   }
   *{box-sizing:border-box}
   body{margin:0;background:var(--bg);color:var(--fg);
@@ -35,6 +46,8 @@
   .card .ic{font-size:26px;margin-bottom:12px}
   .card h3{margin:0 0 6px;font-size:17px}
   .card p{margin:0;color:var(--muted);font-size:14px}
+  .tagpill{display:inline-block;margin-left:6px;padding:1px 8px;border-radius:999px;font-size:11px;
+    font-weight:600;color:#c9a13b;background:rgba(201,161,59,.14);vertical-align:middle}
   .steps{max-width:640px;margin:0 auto;display:grid;gap:14px}
   .step{display:flex;gap:14px;align-items:flex-start;background:var(--card);border:1px solid var(--line);
     border-radius:14px;padding:16px 18px}
@@ -51,29 +64,29 @@
   <div class="wrap">
     <img class="logo" src="icon.png" alt="K-Debugger 아이콘">
     <h1>K-Debugger</h1>
-    <p class="tag">모바일 앱(Android/iOS)에 붙어 로그·네트워크·상태를 실시간으로 들여다보는 데스크톱 디버깅 도구.</p>
+    <p class="tag">Android 앱에 붙어 로그·네트워크·상태를 실시간으로 들여다보는 macOS 데스크톱 디버깅 도구.</p>
     <a class="cta" href="https://github.com/rex-ingeni/K-Debugger/releases/latest">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M5 21h14"/></svg>
       macOS 다운로드
     </a>
-    <span class="cta-sub">최신 릴리스(.dmg) · 설치 후 자동 업데이트 지원</span>
+    <span class="cta-sub">릴리스 페이지에서 최신 <b>.dmg</b>를 받아 실행 · 설치 후 자동 업데이트</span>
   </div>
 </header>
 
 <section class="wrap">
   <h2>주요 기능</h2>
   <div class="grid">
-    <div class="card"><div class="ic">📜</div><h3>실시간 로그</h3><p>디바이스 로그를 스트리밍으로 수집하고 필터링해서 본다.</p></div>
-    <div class="card"><div class="ic">🌐</div><h3>네트워크 검사</h3><p>앱이 주고받는 요청·응답을 가로채 헤더·바디까지 확인한다.</p></div>
-    <div class="card"><div class="ic">🗄️</div><h3>상태 · 저장소</h3><p>앱의 Preferences·DB 등 내부 상태를 조회하고 SQL을 실행한다.</p></div>
-    <div class="card"><div class="ic">🧩</div><h3>WebView 디버깅</h3><p>Chrome DevTools Protocol(CDP)로 앱 안 WebView를 직접 디버깅한다.</p></div>
-    <div class="card"><div class="ic">🔌</div><h3>디바이스 자동 연결</h3><p>adb로 연결된 기기를 자동 감지하고 세션을 유지한다.</p></div>
-    <div class="card"><div class="ic">⬇️</div><h3>자동 업데이트</h3><p>새 버전이 나오면 앱 안에서 클릭 한 번으로 받아 교체·재시작한다.</p></div>
+    <div class="card"><div class="ic" aria-hidden="true">🧩</div><h3>WebView 디버깅</h3><p>Chrome DevTools Protocol(CDP)로 앱 안 WebView를 직접 디버깅한다.</p></div>
+    <div class="card"><div class="ic" aria-hidden="true">🔌</div><h3>디바이스 자동 연결</h3><p>adb로 연결된 기기를 자동 감지하고 세션을 유지한다.</p></div>
+    <div class="card"><div class="ic" aria-hidden="true">⬇️</div><h3>자동 업데이트</h3><p>새 버전이 나오면 앱 안에서 클릭 한 번으로 받아 교체·재시작한다.</p></div>
+    <div class="card"><div class="ic" aria-hidden="true">📜</div><h3>실시간 로그<span class="tagpill">개발 중</span></h3><p>디바이스 로그를 스트리밍으로 모아 필터링해서 본다.</p></div>
+    <div class="card"><div class="ic" aria-hidden="true">🌐</div><h3>네트워크 검사<span class="tagpill">개발 중</span></h3><p>앱이 주고받는 요청·응답을 들여다본다.</p></div>
+    <div class="card"><div class="ic" aria-hidden="true">🗄️</div><h3>상태 · 저장소<span class="tagpill">개발 중</span></h3><p>Preferences·DB 등 앱 내부 상태 조회 및 SQL 실행.</p></div>
   </div>
 </section>
 
 <section class="wrap">
-  <h2>설치 & 업데이트</h2>
+  <h2>설치 &amp; 업데이트</h2>
   <div class="steps">
     <div class="step"><div class="n">1</div><p><b>다운로드</b> — 위 버튼으로 최신 <b>.dmg</b>를 받아 Applications로 드래그한다.</p></div>
     <div class="step"><div class="n">2</div><p><b>실행</b> — 서명 전 단계라 첫 실행은 앱을 <b>우클릭 → 열기</b>.</p></div>
