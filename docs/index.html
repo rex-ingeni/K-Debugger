@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>K-Debugger — 모바일 앱 실시간 디버깅 도구</title>
+<style>
+  :root{
+    --bg:#14151a; --card:#1e2028; --line:#2a2d38; --fg:#e8eaf0; --muted:#9aa0aa;
+    --accent:#4a86ff; --accent2:#2f9e6b;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--fg);
+    font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Pretendard",Segoe UI,Roboto,sans-serif;
+    line-height:1.6;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:960px;margin:0 auto;padding:0 24px}
+  header{padding:96px 0 72px;text-align:center;
+    background:radial-gradient(900px 380px at 50% -80px,rgba(74,134,255,.20),transparent 70%)}
+  .logo{width:76px;height:76px;border-radius:20px;margin:0 auto 22px;
+    background:linear-gradient(145deg,#4a86ff,#2f9e6b);display:flex;align-items:center;justify-content:center;
+    font-size:38px;box-shadow:0 12px 40px rgba(74,134,255,.35)}
+  h1{font-size:clamp(32px,6vw,52px);margin:0 0 12px;letter-spacing:-.02em}
+  .tag{font-size:clamp(15px,2.6vw,19px);color:var(--muted);margin:0 auto 34px;max-width:620px}
+  .cta{display:inline-flex;align-items:center;gap:9px;background:var(--accent);color:#fff;
+    text-decoration:none;font-weight:700;padding:13px 26px;border-radius:999px;font-size:15px;
+    box-shadow:0 8px 26px rgba(74,134,255,.4);transition:transform .06s,background .15s}
+  .cta:hover{background:#5b93ff}
+  .cta:active{transform:scale(.98)}
+  .cta svg{width:18px;height:18px}
+  .cta-sub{display:block;margin-top:12px;color:var(--muted);font-size:13px}
+  section{padding:56px 0}
+  h2{font-size:26px;letter-spacing:-.01em;margin:0 0 28px;text-align:center}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px}
+  .card .ic{font-size:26px;margin-bottom:12px}
+  .card h3{margin:0 0 6px;font-size:17px}
+  .card p{margin:0;color:var(--muted);font-size:14px}
+  .steps{max-width:640px;margin:0 auto;display:grid;gap:14px}
+  .step{display:flex;gap:14px;align-items:flex-start;background:var(--card);border:1px solid var(--line);
+    border-radius:14px;padding:16px 18px}
+  .step .n{flex:none;width:28px;height:28px;border-radius:50%;background:var(--accent);color:#fff;
+    display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px}
+  .step p{margin:0;font-size:14px}
+  .step b{font-weight:600}
+  footer{border-top:1px solid var(--line);padding:32px 0 56px;text-align:center;color:var(--muted);font-size:13px}
+  footer a{color:var(--muted)}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <div class="logo">🐞</div>
+    <h1>K-Debugger</h1>
+    <p class="tag">모바일 앱(Android/iOS)에 붙어 로그·네트워크·상태를 실시간으로 들여다보는 데스크톱 디버깅 도구.</p>
+    <a class="cta" href="https://github.com/rex-ingeni/K-Debugger/releases/latest">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M5 21h14"/></svg>
+      macOS 다운로드
+    </a>
+    <span class="cta-sub">최신 릴리스(.dmg) · 설치 후 자동 업데이트 지원</span>
+  </div>
+</header>
+
+<section class="wrap">
+  <h2>주요 기능</h2>
+  <div class="grid">
+    <div class="card"><div class="ic">📜</div><h3>실시간 로그</h3><p>디바이스 로그를 스트리밍으로 수집하고 필터링해서 본다.</p></div>
+    <div class="card"><div class="ic">🌐</div><h3>네트워크 검사</h3><p>앱이 주고받는 요청·응답을 가로채 헤더·바디까지 확인한다.</p></div>
+    <div class="card"><div class="ic">🗄️</div><h3>상태 · 저장소</h3><p>앱의 Preferences·DB 등 내부 상태를 조회하고 SQL을 실행한다.</p></div>
+    <div class="card"><div class="ic">🧩</div><h3>WebView 디버깅</h3><p>Chrome DevTools Protocol(CDP)로 앱 안 WebView를 직접 디버깅한다.</p></div>
+    <div class="card"><div class="ic">🔌</div><h3>디바이스 자동 연결</h3><p>adb로 연결된 기기를 자동 감지하고 세션을 유지한다.</p></div>
+    <div class="card"><div class="ic">⬇️</div><h3>자동 업데이트</h3><p>새 버전이 나오면 앱 안에서 클릭 한 번으로 받아 교체·재시작한다.</p></div>
+  </div>
+</section>
+
+<section class="wrap">
+  <h2>설치 & 업데이트</h2>
+  <div class="steps">
+    <div class="step"><div class="n">1</div><p><b>다운로드</b> — 위 버튼으로 최신 <b>.dmg</b>를 받아 Applications로 드래그한다.</p></div>
+    <div class="step"><div class="n">2</div><p><b>실행</b> — 서명 전 단계라 첫 실행은 앱을 <b>우클릭 → 열기</b>.</p></div>
+    <div class="step"><div class="n">3</div><p><b>업데이트</b> — 새 버전이 있으면 ⚙ 설정 버튼에 뱃지가 뜨고, 설정 안 <b>업데이트</b>를 누르면 자동으로 교체·재시작된다.</p></div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    K-Debugger · <a href="https://github.com/rex-ingeni/K-Debugger">github.com/rex-ingeni/K-Debugger</a>
+  </div>
+</footer>
+</body>
+</html>
