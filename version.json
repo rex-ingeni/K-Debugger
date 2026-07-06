@@ -1,8 +1,8 @@
 {
-  "version": "0.0.3",
-  "url": "https://github.com/rex-ingeni/K-Debugger/releases/download/v0.0.3/K-Debugger-0.0.3.app.zip",
-  "dmg": "https://github.com/rex-ingeni/K-Debugger/releases/download/v0.0.3/K-Debugger-0.0.3.dmg",
-  "size": 118823077,
-  "sha256": "3bb9ca42974a173a8e7b9d0f7a6cb5f3e45e48283a3ad28ff77d3abb7d7c18e0",
-  "notes": "K-Debugger 0.0.3"
+  "version": "0.0.2",
+  "url": "https://github.com/rex-ingeni/K-Debugger/releases/download/v0.0.2/K-Debugger-0.0.2.app.zip",
+  "dmg": "https://github.com/rex-ingeni/K-Debugger/releases/download/v0.0.2/K-Debugger-0.0.2.dmg",
+  "size": 118823079,
+  "sha256": "1a5b390863c218aa957e646886cceab952df9916b7bf486ced2eb3d697255370",
+  "notes": "K-Debugger 0.0.2"
 }
