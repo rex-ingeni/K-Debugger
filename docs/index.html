@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>K-Debugger — 모바일 앱 실시간 디버깅 도구</title>
+<link rel="icon" type="image/png" href="icon.png">
 <style>
   :root{
     --bg:#14151a; --card:#1e2028; --line:#2a2d38; --fg:#e8eaf0; --muted:#9aa0aa;
@@ -16,9 +17,8 @@
   .wrap{max-width:960px;margin:0 auto;padding:0 24px}
   header{padding:96px 0 72px;text-align:center;
     background:radial-gradient(900px 380px at 50% -80px,rgba(74,134,255,.20),transparent 70%)}
-  .logo{width:76px;height:76px;border-radius:20px;margin:0 auto 22px;
-    background:linear-gradient(145deg,#4a86ff,#2f9e6b);display:flex;align-items:center;justify-content:center;
-    font-size:38px;box-shadow:0 12px 40px rgba(74,134,255,.35)}
+  .logo{width:96px;height:96px;border-radius:22px;margin:0 auto 22px;display:block;object-fit:cover;
+    box-shadow:0 12px 40px rgba(74,134,255,.35)}
   h1{font-size:clamp(32px,6vw,52px);margin:0 0 12px;letter-spacing:-.02em}
   .tag{font-size:clamp(15px,2.6vw,19px);color:var(--muted);margin:0 auto 34px;max-width:620px}
   .cta{display:inline-flex;align-items:center;gap:9px;background:var(--accent);color:#fff;
@@ -49,7 +49,7 @@
 <body>
 <header>
   <div class="wrap">
-    <div class="logo">🐞</div>
+    <img class="logo" src="icon.png" alt="K-Debugger 아이콘">
     <h1>K-Debugger</h1>
     <p class="tag">모바일 앱(Android/iOS)에 붙어 로그·네트워크·상태를 실시간으로 들여다보는 데스크톱 디버깅 도구.</p>
     <a class="cta" href="https://github.com/rex-ingeni/K-Debugger/releases/latest">
