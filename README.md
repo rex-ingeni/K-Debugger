@@ -52,19 +52,27 @@ if (BuildConfig.DEBUG) {
 ```
 해당 WebView 화면을 띄운 뒤, K-Debugger의 **WebView 탭**에서 타깃을 고르면 DevTools가 열린다.
 
-### 4. 로그 · 네트워크 · 상태 (SDK 연동) 🚧 *개발 중*
-앱의 로그·네트워크·Preferences/DB를 보려면 device측 **KDebugger SDK** 연동이 필요하다(플러그인 스트리밍은 개발 중).
+### 4. 로그 · 네트워크 · DB · Prefs (SDK 연동)
+앱의 로그·네트워크·DB·Preferences는 device측 **KDebugger SDK** 연동으로 본다. SDK는 **연결 · 이벤트 전송(`sendEvent`) · 명령 처리(`commandHandler`)** 만 제공하고, 각 플러그인은 앱의 후킹 지점에서 이 API로 데이터를 흘려보낸다(Flipper 후킹 지점 미러링).
+
+**연결**
 ```kotlin
 // Application.onCreate() — 디버그 빌드에서만
-if (BuildConfig.DEBUG) KDebugger.init(this)
+if (BuildConfig.DEBUG) KDebugger.init(this)   // abstract socket "k-debugger" 대기
 ```
 ```
-# 데스크톱에서 소켓 매핑
-adb forward tcp:8088 localabstract:k-debugger
+adb forward tcp:8088 localabstract:k-debugger   # 데스크톱에서 소켓 매핑
 ```
-프로토콜: 4바이트 빅엔디안 길이 헤더 + UTF-8 JSON. 릴리스 빌드에서 `init`을 부르지 않으면 no-op.
+프로토콜: 4바이트 빅엔디안 길이 헤더 + UTF-8 JSON. 릴리스에서 `init`을 안 부르면 no-op.
 
-> 네트워크 인터셉터·DB 브릿지·로그 후킹은 현재 확장 지점(개발 중)이다. 지금 완전히 동작하는 연결은 **3번(WebView)**.
+**플러그인별 후킹 원리**
+- **로그** — 로그 Tree/래퍼에서 `sendEvent("log", id, ts, {level,tag,message})`
+- **네트워크(REST)** — OkHttp `addInterceptor`로 요청·응답을 가로채 `sendEvent("network", …)`
+- **네트워크(WebSocket)** — 리스너 래핑, `onOpen/onClose/onSend/onReceive`에서 프레임을 `sendEvent("network", …)`
+- **DB** — `commandHandler`에서 데스크톱이 보낸 SQL을 실행하고 rows 반환
+- **Prefs** — SharedPreferences 값을 `sendEvent("prefs", …)` 또는 `commandHandler`로 응답
+
+> 모든 후킹은 디버그 빌드에서만(`if (BuildConfig.DEBUG)`) — 릴리스는 no-op.
 
 ---
 
